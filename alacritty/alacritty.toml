@@ -1,0 +1,7 @@
+[general]
+import = ["/home/dx0101x/.config/alacritty/colors.toml"]
+[font]
+normal = { family = "JetBrainsMono NF" , style = "semibold" }
+[window]
+opacity = 0.9
+padding = { x = 10 , y = 10 }

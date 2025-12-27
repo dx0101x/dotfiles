@@ -1,0 +1,27 @@
+/* Special */
+@define-color window_bg_color #1a1110;
+@define-color window_fg_color #f1dedc;
+
+/* Views */
+@define-color view_bg_color #1a1110;
+@define-color view_fg_color #f1dedc;
+
+/* Accent */
+@define-color accent_bg_color #ffb4ab;
+@define-color accent_color #ffb4ab;
+
+/* Headerbar */
+@define-color headerbar_bg_color #1a1110;
+@define-color headerbar_fg_color #f1dedc;
+
+/* Popovers & dialogs */
+@define-color popover_bg_color #271d1c;
+@define-color popover_fg_color #f1dedc;
+
+@define-color dialog_bg_color #1a1110;
+@define-color dialog_fg_color #f1dedc;
+
+/* Cards */
+@define-color card_bg_color #271d1c;
+@define-color card_fg_color #f1dedc;
+

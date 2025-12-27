@@ -1,0 +1,5 @@
+@import 'colors.css';
+* {
+  border-radius: 0px;
+  -gtk-outline-radius: 0px;
+   }

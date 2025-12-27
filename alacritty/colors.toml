@@ -1,0 +1,23 @@
+[colors.primary]
+background = "#1a1110"
+foreground = "#f1dedc"
+
+[colors.normal]
+black   = "#271d1c"        # color0
+red     = "#ffb4ab"                    # color1
+green   = "#e7bdb8"                # color2
+yellow  = "#e0c38c"                 # color3
+blue    = "#ffb4ab"                  # color4
+magenta = "#5d3f3c"      # color5
+cyan    = "#ffb4ab"        # color6
+white   = "#d8c2bf"       # color7
+
+[colors.bright]
+black   = "#534341"          # color8
+red     = "#93000a"          # color9
+green   = "#ffdad6"   # color10
+yellow  = "#fedfa6"    # color11
+blue    = "#ffdad6"     # color12
+magenta = "#442926"             # color13
+cyan    = "#3b0907"         # color14
+white   = "#f1dedc"               # color15
