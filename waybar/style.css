@@ -1,128 +1,153 @@
-@import "./colors.css";
-
 * {
-  font-family: "JetBrainsMono Nerd Font Propo";
-  font-size: 16px;
+  border: none;
   border-radius: 0;
-  box-shadow: none;
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: Liberation Mono;
+  min-height: 20px;
 }
 
 window#waybar {
-  background: @background;
-}
-
-#custom-cachy:hover,
-#cpu:hover,
-#network:hover,
-#bluetooth:hover,
-#pulseaudio:hover,
-#pulseaudio.microphone:hover,
-#pulseaudio.sink-muted:hover,
-#custom-powermenu:hover {
-  opacity: 0.5;
-}
-
-#custom-cachy,
-#cpu,
-#clock,
-#mpris,
-#custom-menu,
-#tray,
-#privacy,
-#network,
-#bluetooth,
-#pulseaudio,
-#pulseaudio.microphone,
-#backlight,
-#battery,
-#custom-powermenu {
-  color: @foreground;
-  padding: 6px 0;
-}
-
-#workspaces button {
-  color: @foreground;
-  padding: 0;
-}
-#workspaces button.active {
-  color: @color2;
-}
-
-#privacy {
-  margin: 4px;
-  color: @color3;
-}
-
-#clock {
-  color: @color4;
-}
-
-#mpris {
-  color: @color3;
-}
-
-#network.disabled {
-  color: @color1;
-}
-#network.wifi {
-  color: @color2;
-}
-#network.ethernet {
-  color: @color3;
-}
-
-#bluetooth.disabled {
-  color: @color1;
-}
-#bluetooth.connected {
-  color: @color4;
-}
-
-#pulseaudio.sink-muted:not(.microphone) {
-  color: @color3;
-}
-#pulseaudio.microphone.source-muted {
-  color: @color1;
-}
-
-#battery.plugged {
-  color: @color4;
-}
-#battery.charging {
-  color: @color2;
-}
-#battery.critical {
-  color: @color3;
-}
-
-tooltip {
-  background: @background;
-  border: 1px solid @foreground;
-}
-tooltip * {
-  color: @foreground;
-  margin: 2px;
-  background: @background;
-}
-
-#pulseaudio-slider,
-#backlight-slider {
-  min-height: 80px;
-}
-
-#pulseaudio-slider slider,
-#backlight-slider slider {
   background: transparent;
 }
 
-#pulseaudio-slider trough,
-#backlight-slider trough {
-  min-width: 8px;
+/*window#waybar {
+  background: shade(alpha(@borders, 0.9), 1.25);
+}*/
+
+window#waybar.hidden {
+  opacity: 0.2;
 }
 
-#pulseaudio-slider highlight {
-  background: @color4;
+#workspaces {
+  margin-right: 8px;
+  border-radius: 10px;
+  transition: none;
+  background: rgba(77, 77, 77, 0.5);
 }
-#backlight-slider highlight {
-  background: @color3;
+
+#workspaces button {
+  transition: none;
+  color: #7c818c;
+  background: transparent;
+  padding: 5px;
+  font-size: 18px;
+}
+
+#workspaces button.persistent {
+  color: #7c818c;
+  font-size: 12px;
+}
+
+/* hover fix */
+#workspaces button:hover {
+  transition: none;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  border-radius: inherit;
+  color: rgba(77, 77, 77, 0.5);
+  background: #7c818c;
+}
+
+#workspaces button.focused {
+  color: white;
+}
+
+#window {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #ffffff;
+  background: rgba(77, 77, 77, 0.5);
+}
+
+#mpris {
+  margin-right: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 10px;
+  transition: none;
+  color: #ffffff;
+  background: rgba(77, 77, 77, 0.5);
+}
+
+#pulseaudio {
+  margin-right: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #ffffff;
+  background: rgba(77, 77, 77, 0.5);
+}
+
+#temperature {
+  margin-right: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #ffffff;
+  background: rgba(77, 77, 77, 0.5);
+}
+
+#temperature.critical {
+  background-color: #eb4d4b;
+}
+
+/*#network {
+  margin-right: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 10px;
+  transition: none;
+  color: #ffffff;
+  background: rgba(77, 77, 77, 0.5);
+}*/
+
+#clock {
+  margin-right: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #ffffff;
+  background: rgba(77, 77, 77, 0.5);
+}
+
+#custom-pacman {
+  margin-right: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #ffffff;
+  background: rgba(77, 77, 77, 0.5);
+}
+
+#custom-launcher {
+  font-size: 24px;
+  margin-right: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 10px;
+  transition: none;
+  color: #3385FF;
+  background: rgba(77, 77, 77, 0.5);
+}
+
+#tray {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #ffffff;
+  background: rgba(77, 77, 77, 0.5);
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
 }
