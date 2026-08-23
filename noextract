@@ -1,4 +1,6 @@
 NoExtract = usr/share/applications/assistant.desktop usr/share/applications/designer.desktop usr/share/applications/linguist.desktop usr/share/applications/qdbusviewer.desktop
+NoExtract = usr/lib/systemd/user/foot-server.* usr/bin/footclient
+NoExtract = usr/share/applications/foot*.desktop !usr/share/applications/foot.desktop
 NoExtract = usr/share/plasma/avatars/*
 NoExtract = usr/share/weather*/*
 NoExtract = usr/share/qt6/phrasebooks/*
