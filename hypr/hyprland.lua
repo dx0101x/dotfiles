@@ -27,8 +27,8 @@ local fileManager = "dolphin"
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 
 hl.on("hyprland.start", function () 
-   hl.exec_cmd("noctalia -d")
- end)
+   hl.exec_cmd("noctalia")
+  end)
 
 
 -------------------------------
@@ -40,6 +40,7 @@ hl.on("hyprland.start", function ()
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME", "Breeze_Light")
 
 
 -----------------------
@@ -61,7 +62,11 @@ hl.config({
 -- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
 -- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
 -- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
-
+hl.config({
+	xwayland = {
+		enabled = true,
+	
+}, })
 
 -----------------------
 ---- LOOK AND FEEL ----
@@ -99,15 +104,10 @@ hl.config({
 
         shadow = {
             enabled      = false,
-            range        = 4,
-            render_power = 3,
-            color        = 0xee1a1a1a,
         },
 
         blur = {
-            enabled   = true,
-            size      = 3,
-            passes    = 3,
+            enabled   = false,
         },
     },
 
@@ -167,6 +167,7 @@ hl.config({
 
 hl.config({
     misc = {
+	vrr = 1,
 	disable_splash_rendering = true,
         force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
 	disable_hyprland_guiutils_check = true,
@@ -182,11 +183,6 @@ hl.config({
 hl.config({
     input = {
         kb_layout  = "us",
-        kb_variant = "",
-        kb_model   = "",
-        kb_options = "",
-        kb_rules   = "",
-
         follow_mouse = 1,
         accel_profile = "flat",
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
@@ -223,16 +219,18 @@ hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("noctalia msg session lock"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(ipc .. "session lock"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(ipc .. "panel-toggle wallpaper"))
+hl.bind("SUPER + F", hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + C", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(ipc .. "panel-toggle clipboard"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 
 -- Core binds
 hl.bind(mainMod .. "+Space", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
-hl.bind(mainMod .. "+S", hl.dsp.exec_cmd(ipc .. "panel-toggle control-center"))
+hl.bind(mainMod .. "+A", hl.dsp.exec_cmd(ipc .. "panel-toggle control-center"))
 hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. "settings-toggle"))
 hl.bind("ALT + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher"))
 
@@ -244,7 +242,18 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. "brightness-up"))
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. "brightness-down"))
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd(ipc .. "media next"))
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(ipc .. "media toggle"))
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd(ipc .. "media toggle"))
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd(ipc .. "media previous"))
+
+-- Most Useful binds ever fuck mouse
+hl.bind("SUPER + SHIFT + LEFT",  hl.dsp.window.move({ direction = "left" }))
+hl.bind("SUPER + SHIFT + RIGHT", hl.dsp.window.move({ direction = "right" }))
+hl.bind("SUPER + SHIFT + UP",    hl.dsp.window.move({ direction = "up" }))
+hl.bind("SUPER + SHIFT + DOWN",  hl.dsp.window.move({ direction = "down" }))
+
+-- Screenshot management
+hl.bind(mainMod .. " + print", hl.dsp.exec_cmd(ipc .. "screenshot-fullscreen"))
+hl.bind("print", hl.dsp.exec_cmd(ipc .. "screenshot-annotate"))
 
 
 -- Move focus with mainMod + arrow keys
@@ -306,6 +315,15 @@ hl.window_rule({
     no_focus = true,
 })
 
+hl.window_rule({
+    name = "default-floating-size",
+    match = {
+        float = true,
+    },
+    size = { 800, 600 },
+    center = true,
+})
+
 -- Layer rules also return a handle.
 -- local overlayLayerRule = hl.layer_rule({
 --     name  = "no-anim-overlay",
@@ -322,6 +340,7 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
 
 -- For Noctalia Color templates
 require("noctalia").apply_theme()
